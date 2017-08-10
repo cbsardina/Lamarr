@@ -1,5 +1,16 @@
-let playerCardArray = [];                                //all the cards the player has (26 to start)
-let computerCardArray = [];                              //all the cards the computer has (26 to start)
+const JH = 11;
+const AD = 14;
+const C4 = 4;
+const S7 = 7;
+const KD = 13;
+const JD = 11;
+const D5 = 5;
+const C2 = 2;
+const AC = 14;
+const H2 = 2;
+
+let playerCardArray = [AD, C4, S7, AC];                                //all the cards the player has (26 to start)
+let computerCardArray = [KD, D5, C2, H2];                              //all the cards the computer has (26 to start)
 
 // if (playerCardArray.length === 52) {
 //   return "You Win!!!";
@@ -7,10 +18,17 @@ let computerCardArray = [];                              //all the cards the com
 // if (computerCardArray.length === 52) {
 //   return "The Computer Wins :(";
 // }
+// J=11, Q=12, K=13, A=14
 
-something.onclick = function() {                         //starts the game based on player action onclick/onsubmit
-  let playerCard = playerCardArray.shift();              // assigning cards. Pulled from front of respective arrs
-  let computerCard = computerCardArray.shift();
+
+
+let playerCard = JH;
+let computerCard = JD;
+
+// something.onclick = function() {                         //starts the game based on player action onclick/onsubmit
+
+  // let playerCard = playerCardArray.shift();              // assigning cards. Pulled from front of respective arrs
+  // let computerCard = computerCardArray.shift();
 
   if (playerCard > computerCard) {                       //if player's card is greater, both cards push to total arr
       playerCardArray.push(playerCard);
@@ -43,4 +61,6 @@ something.onclick = function() {                         //starts the game based
           computerCardArray.push(warHand);
         }
       } // end else
-} //end onclick fn
+      console.log("Player cards/array: " + playerCardArray);
+      console.log("Computer cards/array: " + computerCardArray);
+// } //end onclick fn
