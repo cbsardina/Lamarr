@@ -1,19 +1,3 @@
-<<<<<<< HEAD
-const JH = 11;
-const AD = 14;
-const C4 = 4;
-const S7 = 7;
-const KD = 13;
-const JD = 11;
-const D5 = 5;
-const C2 = 2;
-const AC = 14;
-const H2 = 2;
-
-let playerCardArray = [AD, C4, S7, AC];                                //all the cards the player has (26 to start)
-let computerCardArray = [KD, D5, C2, H2];                              //all the cards the computer has (26 to start)
-=======
-
 
 function createDeck() {
   let deck = [];
@@ -67,59 +51,59 @@ console.log(numDeck);
 //=============STEPHEN ABOVE=================
 //=============CHRIS BELOW===================
 
+// Variables
+const draw = getQuerySelector('.draw');
 let playerCardArray = [];                                //all the cards the player has (26 to start)
 let computerCardArray = [];                              //all the cards the computer has (26 to start)
->>>>>>> 3e2eb9e8b573e26bc6dce5c29c6a2973fc1b0f1a
 
-// if (playerCardArray.length === 52) {
-//   return "You Win!!!";
-// }
-// if (computerCardArray.length === 52) {
-//   return "The Computer Wins :(";
-// }
-// J=11, Q=12, K=13, A=14
+draw.onsubmit = function (){                             // event listener for card draw
 
+  let playerCard = playerCardArray.shift();              // assigning cards. Pulled from front of respective arrs
+  let computerCard = computerCardArray.shift();
 
+  if (playerCardArray.length === 52) {
+    return "You Win!!!";
+  }
+  if (computerCardArray.length === 52) {
+    return "The Computer Wins :(";
+  }
+  else {
 
-let playerCard = JH;
-let computerCard = JD;
+      if (playerCard > computerCard) {                   //if player's card is greater, both cards push to total arr
+          playerCardArray.push(playerCard);
+          playerCardArray.push(computerCard);
+      } // end if
+      else if (computerCard > playerCard) {              //if comp's card is greater, both cards push to total arr
+          computerCardArray.push(playerCard);
+          computerCardArray.push(computerCard);
+      } //end else if
+          else {                                         //if equal, war. Draw 4, last card being compared
+            let warHand = [];
+            let j = 0;
+            while (j < 3) {
+              let pullPlayerCard = playerCardArray.shift();
+              let pullCompCard = computerCardArray.shift();
+                warHand.push(pullPlayerCard);
+                warHand.push(pullCompCard);
+              j++;
+            } //end while
+            let playerWarCard = playerCardArray.shift();
+            let computerWarCard = computerCardArray.shift();
+            if (playerWarCard > computerWarCard) {
+              playerCardArray.push(playerWarCard);
+              playerCardArray.push(computerWarCard);
+              playerCardArray.push(warHand);
+            }
+            else {
+              computerCardArray.push(playerWarCard);
+              computerCardArray.push(computerWarCard);
+              computerCardArray.push(warHand);
+            } //end local else
+          } // end else
 
-// something.onclick = function() {                         //starts the game based on player action onclick/onsubmit
+          console.log("Player cards/array: " + playerCardArray);
+          console.log("Computer cards/array: " + computerCardArray);
 
-  // let playerCard = playerCardArray.shift();              // assigning cards. Pulled from front of respective arrs
-  // let computerCard = computerCardArray.shift();
+    } //end else to play the game if player o computer !== 52 cards
 
-  if (playerCard > computerCard) {                       //if player's card is greater, both cards push to total arr
-      playerCardArray.push(playerCard);
-      playerCardArray.push(computerCard);
-  } // end if
-  else if (computerCard > playerCard) {                  //if comp's card is greater, both cards push to total arr
-      computerCardArray.push(playerCard);
-      computerCardArray.push(computerCard);
-  } //end else if
-      else {                                                 //if equal, war. Draw 4, last card being compared
-        let warHand = [];
-        let j = 0;
-        while (j < 3) {
-          let pullPlayerCard = playerCardArray.shift();
-          let pullCompCard = computerCardArray.shift();
-          warHand.push(pullPlayerCard);
-          warHand.push(pullCompCard);
-          j++;
-        } //end while
-        let playerWarCard = playerCardArray.shift();
-        let computerWarCard = computerCardArray.shift();
-        if (playerWarCard > computerWarCard) {
-          playerCardArray.push(playerWarCard);
-          playerCardArray.push(computerWarCard);
-          playerCardArray.push(warHand);
-        }
-        else {
-          computerCardArray.push(playerWarCard);
-          computerCardArray.push(computerWarCard);
-          computerCardArray.push(warHand);
-        }
-      } // end else
-      console.log("Player cards/array: " + playerCardArray);
-      console.log("Computer cards/array: " + computerCardArray);
-// } //end onclick fn
+}; //end of onsubmit function - draw cards
